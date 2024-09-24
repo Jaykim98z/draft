@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버축대 모의전 드래프트</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>버축대 모의전 드래프트</h1>
+
+        <div class="controls">
+            <label for="positionSelect" class="positionLabel">포지션 선택:</label>
+            <select id="positionSelect">
+                <option value="ST">ST</option>
+                <option value="WF">WF</option>
+                <option value="CM">CM</option>
+                <option value="CDM">CDM</option>
+                <option value="WB">WB</option>
+                <option value="CB">CB</option>
+                <option value="GK">GK</option>
+            </select>
+        </div>
+
+        <textarea id="playerList" rows="5" placeholder="여기에 선수 이름을 붙여넣기 하세요.&#10;디스코드에서 '반응보기' 누른 후 닉네임 드래그하여 복사하시면 됩니다"></textarea>
+
+        <div class="button-group">
+            <button id="generateBtn">선수 생성</button>
+            <button id="clearTextBtn">지우기</button>
+            <button id="resetPlayersBtn">선수 목록 리셋</button>
+        </div>
+
+        <div id="positionsContainer">
+            <div class="position">
+                <h3>ST</h3>
+                <div id="ST" class="playerContainer"></div>
+            </div>
+            <div class="position">
+                <h3>WF</h3>
+                <div id="WF" class="playerContainer"></div>
+            </div>
+            <div class="position">
+                <h3>CM</h3>
+                <div id="CM" class="playerContainer"></div>
+            </div>
+            <div class="position">
+                <h3>CDM</h3>
+                <div id="CDM" class="playerContainer"></div>
+            </div>
+            <div class="position">
+                <h3>WB</h3>
+                <div id="WB" class="playerContainer"></div>
+            </div>
+            <div class="position">
+                <h3>CB</h3>
+                <div id="CB" class="playerContainer"></div>
+            </div>
+            <div class="position">
+                <h3>GK</h3>
+                <div id="GK" class="playerContainer"></div>
+            </div>
+        </div>
+
+        <h2>감독</h2>
+        <div class="manager-controls">
+            <input type="text" id="managerNameInput" placeholder="감독 이름 입력">
+            <button id="addManagerBtn">감독 추가</button>
+            <button id="resetManagersBtn">감독 및 팀 리셋</button>
+        </div>
+
+        <div id="managersContainer" class="managerContainer"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

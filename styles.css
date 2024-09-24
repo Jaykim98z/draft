@@ -1,0 +1,133 @@
+/* 전체적인 레이아웃과 디자인 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.controls, .button-group, .manager-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: inherit;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+#clearTextBtn {
+    background-color: #d9534f;
+}
+
+#clearTextBtn:hover {
+    background-color: #c9302c;
+}
+
+#resetPlayersBtn {
+    background-color: #f0ad4e;
+}
+
+#resetPlayersBtn:hover {
+    background-color: #ec971f;
+}
+
+/* 포지션 컨테이너 레이아웃 */
+#positionsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.playerContainer {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #777;
+}
+
+button.playerBtn {
+    display: block;
+    margin: 5px auto;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+/* 감독 컨트롤과 리스트 레이아웃 */
+.manager-controls input {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.managerContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.managerBtn {
+    background-color: #0275d8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.managerBtn:hover {
+    background-color: #025aa5;
+}
+
+.manager-selected {
+    background-color: lightblue;
+}
