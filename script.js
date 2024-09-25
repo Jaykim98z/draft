@@ -29,6 +29,9 @@ document.getElementById('generateBtn').addEventListener('click', function() {
             }
         }
     }
+
+    // 선수 생성 후 텍스트박스를 비우기
+    document.getElementById('playerList').value = '';
 });
 
 function isPlayerAlreadyAdded(playerName, positionDiv) {
