@@ -17,8 +17,8 @@ document.getElementById('generateBtn').addEventListener('click', function() {
         if (i % 2 === 0) {  // 0부터 시작하므로 홀수 번째 선수는 짝수 인덱스
             let playerName = playerList[i].trim();
 
-            // 불필요한 태그 및 영어 문자 제거 (예: 'LV65 [fw]' 등)
-            playerName = playerName.replace(/LV\d+|\[.*?\]/g, '').trim();
+            // 한글과 공백만 남기고 나머지 문자 제거
+            playerName = playerName.replace(/[^가-힣\s]/g, '');
 
             if (playerName && !isPlayerAlreadyAdded(playerName, positionDiv)) {
                 const button = document.createElement('button');
@@ -129,7 +129,7 @@ function getPositionColor(position) {
         case 'CB':
             return 'blue';   // WB, CB는 파랑
         case 'GK':
-            return 'yellow'; // GK는 노랑
+            return 'gray'; // GK는 회색
         default:
             return 'black';  // 기본 값
     }
@@ -178,4 +178,14 @@ document.getElementById('resetPlayersBtn').addEventListener('click', function() 
         document.querySelector(`h3[data-position="${position}"]`).textContent = `${position.toUpperCase()} (0)`; // 인원수 초기화
     });
     selectedPlayers.clear();  // 선택된 선수 목록도 초기화
+});
+
+// 포지션별 초기화 버튼 클릭 이벤트 처리
+document.querySelectorAll('.resetPositionBtn').forEach(button => {
+    button.addEventListener('click', function() {
+        const position = button.getAttribute('data-position');
+        const positionDiv = document.getElementById(position);
+        positionDiv.innerHTML = ''; // 해당 포지션 선수 목록 초기화
+        document.querySelector(`h3[data-position="${position}"]`).textContent = `${position.toUpperCase()} (0)`; // 선수 인원수 업데이트
+    });
 });

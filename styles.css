@@ -21,28 +21,36 @@ h1, h2 {
 /* 감독과 팀 명단 상단 배치 */
 .managerContainer {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* 한 줄에 최대 4개씩 표시하고 나머지는 다음 줄로 이동 */
+    justify-content: flex-start; /* 왼쪽 정렬 */
     margin-bottom: 20px;
+    gap: 10px; /* 감독 버튼 사이의 간격 추가 */
 }
 
 .manager-controls {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* 가운데 정렬 */
     align-items: center;
-    gap: 10px;
+    gap: 10px; /* 버튼 간의 간격 추가 */
     margin-bottom: 20px;
+    text-align: center; /* 텍스트 입력 필드도 가운데 정렬 */
 }
 
+/* 감독 버튼 스타일 */
 .managerBtn {
     background-color: #0275d8;
     color: white;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    margin: 10px;
+    margin: 10px 0; /* 감독 버튼 간의 간격 설정 */
     cursor: pointer;
     transition: background-color 0.3s ease;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-width: 150px;
+    text-align: center;
+    flex-basis: calc(25% - 10px); /* 한 줄에 4개의 감독이 들어가도록 설정 */
 }
 
 .managerBtn:hover {
@@ -63,6 +71,7 @@ h1, h2 {
     padding: 10px;
     max-width: 200px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-basis: calc(25% - 10px); /* 한 줄에 4개의 선수 목록이 들어가도록 설정 */
 }
 
 .managerList li {
@@ -78,7 +87,7 @@ h1, h2 {
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
-    margin-top: 20px; /* 텍스트박스와 버튼 사이에 간격 추가 */
+    margin-top: 20px;
 }
 
 textarea {
@@ -91,7 +100,7 @@ textarea {
     border: 1px solid #ddd;
     font-family: inherit;
     font-size: 16px;
-    margin-bottom: 20px;  /* 텍스트박스와 버튼들 간의 간격 추가 */
+    margin-bottom: 20px;
 }
 
 button {
@@ -120,9 +129,16 @@ button:hover {
 /* 포지션 컨테이너 레이아웃 */
 #positionsContainer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     margin-top: 30px;
+}
+
+.position {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
 }
 
 .playerContainer {
@@ -138,9 +154,63 @@ h3 {
     color: #777;
 }
 
+/* 선수 버튼 스타일 */
 button.playerBtn {
     display: block;
-    margin: 5px auto;
-    padding: 8px 16px;
+    margin: 10px auto;
+    padding: 10px 20px;
     font-size: 14px;
+    background-color: #5cb85c; /* 선수 버튼 배경을 초록색으로 복원 */
+    color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    white-space: nowrap;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.playerBtn:hover {
+    background-color: #4cae4c;
+}
+
+/* 포지션별 초기화 버튼 스타일 */
+.resetPositionBtn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.resetPositionBtn:hover {
+    background-color: #c9302c;
+}
+
+/* GK 포지션 색상 변경 */
+button.playerBtn.gk {
+    background-color: gray;
+}
+
+/* 추가적인 스타일 (필요 시) */
+::-webkit-scrollbar {
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
 }
