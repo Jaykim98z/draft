@@ -17,7 +17,7 @@ document.getElementById('generateBtn').addEventListener('click', function() {
                 button.classList.add('playerBtn');
                 button.addEventListener('click', function() {
                     if (selectedPlayers.has(playerName)) {
-                        alert(`${playerName} 선수는 이미 선택되었습니다.`);
+                        deselectPlayer(playerName, this);  // 선택 취소
                     } else if (currentManager) {
                         addPlayerToManager(playerName);
                         markPlayerAsSelected(this);  // 선택된 선수로 표시
@@ -80,14 +80,32 @@ function addPlayerToManager(playerName) {
     const playerList = document.getElementById(`${currentManager}List`);
     const listItem = document.createElement('li');
     listItem.textContent = playerName;
+    listItem.classList.add('playerInTeam');
     playerList.appendChild(listItem);
     selectedPlayers.add(playerName);  // 선택된 선수로 추가
+}
+
+function deselectPlayer(playerName, playerButton) {
+    const playerList = document.getElementById(`${currentManager}List`);
+    const playerItems = [...playerList.children];
+
+    // 팀 명단에서 해당 선수를 제거
+    const playerToRemove = playerItems.find(item => item.textContent === playerName);
+    if (playerToRemove) {
+        playerList.removeChild(playerToRemove);
+        selectedPlayers.delete(playerName);  // 선택 목록에서 제거
+        unmarkPlayer(playerButton);  // 선택 취소 표시
+    }
 }
 
 function markPlayerAsSelected(playerButton) {
     playerButton.style.backgroundColor = '#d9534f';  // 빨간색으로 표시
     playerButton.style.color = 'white';
-    playerButton.disabled = true;  // 더 이상 선택할 수 없게 비활성화
+}
+
+function unmarkPlayer(playerButton) {
+    playerButton.style.backgroundColor = '';  // 원래 색상으로 복원
+    playerButton.style.color = '';
 }
 
 // 감독 및 팀 리셋
@@ -99,7 +117,6 @@ document.getElementById('resetManagersBtn').addEventListener('click', function()
     playerButtons.forEach(button => {
         button.style.backgroundColor = '';  // 버튼 색상 초기화
         button.style.color = '';
-        button.disabled = false;  // 다시 선택할 수 있게 활성화
     });
 });
 

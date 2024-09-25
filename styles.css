@@ -18,12 +18,67 @@ h1, h2 {
     margin-bottom: 20px;
 }
 
-.controls, .button-group, .manager-controls {
+/* 감독과 팀 명단 상단 배치 */
+.managerContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.manager-controls {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+}
+
+.managerBtn {
+    background-color: #0275d8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.managerBtn:hover {
+    background-color: #025aa5;
+}
+
+.manager-selected {
+    background-color: lightblue;
+    color: white;
+}
+
+.managerList {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 200px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.managerList li {
+    font-size: 16px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 버튼과 텍스트박스 간의 간격 추가 */
+.controls, .button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px; /* 텍스트박스와 버튼 사이에 간격 추가 */
 }
 
 textarea {
@@ -36,6 +91,7 @@ textarea {
     border: 1px solid #ddd;
     font-family: inherit;
     font-size: 16px;
+    margin-bottom: 20px;  /* 텍스트박스와 버튼들 간의 간격 추가 */
 }
 
 button {
@@ -51,14 +107,6 @@ button {
 
 button:hover {
     background-color: #4cae4c;
-}
-
-#clearTextBtn {
-    background-color: #d9534f;
-}
-
-#clearTextBtn:hover {
-    background-color: #c9302c;
 }
 
 #resetPlayersBtn {
@@ -95,39 +143,4 @@ button.playerBtn {
     margin: 5px auto;
     padding: 8px 16px;
     font-size: 14px;
-}
-
-/* 감독 컨트롤과 리스트 레이아웃 */
-.manager-controls input {
-    padding: 10px;
-    width: 200px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.managerContainer {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.managerBtn {
-    background-color: #0275d8;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.managerBtn:hover {
-    background-color: #025aa5;
-}
-
-.manager-selected {
-    background-color: lightblue;
 }
