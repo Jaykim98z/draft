@@ -1,6 +1,9 @@
 let currentManager = null;
 const selectedPlayers = new Set();  // 이미 선택된 선수를 추적하는 Set
 
+// 포지션 순서를 유지하기 위한 배열
+const positionOrder = ['ST', 'WF', 'CM', 'CDM', 'WB', 'CB', 'GK'];
+
 // 선수 생성 버튼 클릭 이벤트
 document.getElementById('generateBtn').addEventListener('click', function() {
     const playerList = document.getElementById('playerList').value.split('\n');
@@ -14,8 +17,8 @@ document.getElementById('generateBtn').addEventListener('click', function() {
         if (i % 2 === 0) {  // 0부터 시작하므로 홀수 번째 선수는 짝수 인덱스
             let playerName = playerList[i].trim();
 
-            // 영어와 특정 특수 문자 이후의 모든 내용 제거, 하지만 전체 이름은 유지
-            playerName = playerName.replace(/[a-zA-Z]/g, '').replace(/[\[{<].*$/, '').trim();
+            // 불필요한 태그 및 영어 문자 제거 (예: 'LV65 [fw]' 등)
+            playerName = playerName.replace(/LV\d+|\[.*?\]/g, '').trim();
 
             if (playerName && !isPlayerAlreadyAdded(playerName, positionDiv)) {
                 const button = document.createElement('button');
