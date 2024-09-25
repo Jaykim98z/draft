@@ -57,7 +57,7 @@ h1, h2 {
     flex-wrap: wrap; /* 한 줄에 최대 4개씩 표시하고 나머지는 다음 줄로 이동 */
     justify-content: center; /* 왼쪽 정렬 */
     margin-bottom: 20px;
-    gap: 10px; /* 감독 버튼 사이의 간격 추가 */
+    gap: 20px; /* 감독 버튼 사이의 간격 추가 */
 }
 
 .manager-controls {
@@ -81,7 +81,7 @@ h1, h2 {
     transition: background-color 0.3s ease;
     white-space: nowrap;
     text-overflow: ellipsis;
-    min-width: 150px;
+    min-width: 100px;
     text-align: center;
     flex-basis: calc(25% - 10px); /* 한 줄에 4개의 감독이 들어가도록 설정 */
     font-weight: bold;
@@ -104,7 +104,7 @@ h1, h2 {
     background-color: #fff;
     border-radius: 5px;
     padding: 10px;
-    max-width: 200px;
+    max-width: 350px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     flex-basis: calc(25% - 10px); /* 한 줄에 4개의 선수 목록이 들어가도록 설정 */
 }
@@ -113,6 +113,17 @@ h1, h2 {
     font-size: 16px;
     padding: 5px;
     border-bottom: 1px solid #ddd;
+}
+
+.manager-image {
+    width: 80px; /* 이미지 가로 크기 설정 */
+    height: 80px; /* 이미지 세로 크기 설정 */
+    border-radius: 50%; /* 원형으로 표시 */
+    object-fit: cover; /* 이미지가 잘리지 않고 비율 유지 */
+}
+
+.manager-image:hover {
+    background-color: rgb(196, 37, 37);
 }
 
 /* 버튼과 텍스트박스 간의 간격 추가 */

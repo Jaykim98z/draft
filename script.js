@@ -4,6 +4,22 @@ const selectedPlayers = new Set();  // 이미 선택된 선수를 추적하는 S
 // 포지션 순서를 유지하기 위한 배열
 const positionOrder = ['ST', 'WF', 'CM', 'CDM', 'WB', 'CB', 'GK'];
 
+const streamerImages = {
+    '천양': 'image/천양.jpg',
+    '두칠': 'image/두칠.jpg',
+    '진호': 'image/진호.jpg',
+    '뢴트': 'image/뢴트게늄.jpg',
+    '뢴트게늄': 'image/뢴트게늄.jpg',
+    '곽춘식': 'image/곽춘식.jpg',
+    '춘식': 'image/곽춘식.jpg',
+    '주닝요': 'image/주닝요.jpg',
+    '닝햄': 'image/주닝요.jpg',
+    '피카온': 'image/피카온.jpg',
+    '설리반' : 'image/설리반.jpg',
+    '우왁굳' : 'image/우왁굳.jpg',
+    '문모모' : 'image/문모모.jpg'
+};
+
 // 선수 생성 버튼 클릭 이벤트
 document.getElementById('generateBtn').addEventListener('click', function() {
     const playerList = document.getElementById('playerList').value.split('\n');
@@ -61,35 +77,59 @@ document.getElementById('addManagerBtn').addEventListener('click', function() {
     }
 
     const managersContainer = document.getElementById('managersContainer');
-    const managerId = managerName;
+    
+    // 감독과 선수 명단을 담을 컨테이너 생성
+    const managerUnit = document.createElement('div');
+    managerUnit.classList.add('managerUnit');
 
-    // 감독 버튼 생성
-    const managerButton = document.createElement('button');
-    managerButton.textContent = managerId;
-    managerButton.classList.add('managerBtn');
+    // 감독 이미지 또는 버튼 생성
+    const managerButton = document.createElement('div');
+    managerButton.setAttribute('data-manager', managerName); // 감독 ID 설정
+
+    if (streamerImages[managerName]) {
+        const img = document.createElement('img');
+        img.src = streamerImages[managerName];
+        img.alt = managerName;
+        img.classList.add('manager-image');
+        managerButton.appendChild(img);
+    } else {
+        managerButton.textContent = managerName;
+        managerButton.classList.add('managerBtn');
+    }
+
+    managerButton.classList.add('managerItem');
     managerButton.addEventListener('click', function() {
         selectManager(managerButton);
     });
 
     // 감독의 선수 목록 생성
     const playerList = document.createElement('ul');
-    playerList.id = `${managerId}List`;
+    playerList.id = `${managerName}List`;
     playerList.classList.add('managerList');
 
-    managersContainer.appendChild(managerButton);
-    managersContainer.appendChild(playerList);
+    // 감독과 선수 명단을 managerUnit에 추가
+    managerUnit.appendChild(managerButton);
+    managerUnit.appendChild(playerList);
+
+    // 최종적으로 managerUnit을 managersContainer에 추가
+    managersContainer.appendChild(managerUnit);
 
     document.getElementById('managerNameInput').value = '';  // 입력란 초기화
 });
 
 function selectManager(managerButton) {
-    const managerButtons = document.querySelectorAll('.managerBtn');
+    const managerButtons = document.querySelectorAll('.managerItem');
     managerButtons.forEach(button => button.classList.remove('manager-selected'));
     managerButton.classList.add('manager-selected');
-    currentManager = managerButton.textContent;
+    currentManager = managerButton.getAttribute('data-manager'); // 감독 ID를 currentManager에 저장
 }
 
 function addPlayerToManager(playerName, position) {
+    if (!currentManager) {
+        alert('먼저 감독을 선택하세요.');
+        return;
+    }
+
     const playerList = document.getElementById(`${currentManager}List`);
 
     // 선수 항목을 생성하고 포지션에 따른 색상을 지정
