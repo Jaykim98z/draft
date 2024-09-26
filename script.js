@@ -45,38 +45,38 @@ const playerDatabase = [
     { name: "티야", position: "ST" },
     { name: "배민정", position: "ST" },
     { name: "아야네세나", position: "ST / GK" },
-    { name: "녹초", position: "RW / ST" },
-    { name: "강단헤", position: "LW" },
+    { name: "녹초", position: "WF / ST" },
+    { name: "강단헤", position: "WF" },
     { name: "깡담비", position: "WF" },
-    { name: "여르미", position: "RW" },
-    { name: "천사탕", position: "RW" },
+    { name: "여르미", position: "WF" },
+    { name: "천사탕", position: "WF" },
     { name: "딸기슈몽이", position: "WF / CAM" },
-    { name: "우엉", position: "LW" },
-    { name: "치유", position: "LW" },
+    { name: "우엉", position: "WF" },
+    { name: "치유", position: "WF" },
     { name: "쥬멩미", position: "WF / CM" },
     { name: "나비", position: "WF" },
-    { name: "유쁠리", position: "RW" },
+    { name: "유쁠리", position: "WF" },
     { name: "예다", position: "WF / CM" },
     { name: "달타", position: "WF / ST" },
     { name: "유이담", position: "WF" },
-    { name: "재수피기", position: "WF" },
-    { name: "한오월", position: "LW / CM" },
+    { name: "재수피기", position: "WF / GK" },
+    { name: "한오월", position: "WF / CM" },
     { name: "윤복슬", position: "WF" },
     { name: "로파니", position: "WF" },
-    { name: "박디라", position: "RW" },
+    { name: "박디라", position: "WF" },
     { name: "쵸로키", position: "WF" },
     { name: "빈스", position: "WF / CM" },
-    { name: "몽나", position: "LW" },
-    { name: "나나링", position: "LW" },
+    { name: "몽나", position: "WF" },
+    { name: "나나링", position: "WF" },
     { name: "임재천", position: "WF / CM" },
-    { name: "델피", position: "RW" },
+    { name: "델피", position: "WF" },
     { name: "해리", position: "WF / ST" },
     { name: "다나뉴엔", position: "WF" },
-    { name: "이비", position: "RW / CAM" },
+    { name: "이비", position: "WF / CAM" },
     { name: "온리유", position: "WF" },
     { name: "찰리씨", position: "WF / CB" },
     { name: "고티", position: "WF" },
-    { name: "유하띠", position: "LW" },
+    { name: "유하띠", position: "WF" },
     { name: "누눙지", position: "CM / WF" },
     { name: "문모모", position: "ALL" },
     { name: "뽀린걸", position: "CM / CAM" },
@@ -132,7 +132,7 @@ const playerDatabase = [
     { name: "양도끼", position: "CB" },
     { name: "온우쥬", position: "CB" },
     { name: "쪼꼬밍", position: "CB" },
-    { name: "르니", position: "CB / LB" },
+    { name: "르니", position: "CB / WB" },
     { name: "뮤즈", position: "CB" },
     { name: "큐나", position: "CB" },
     { name: "마이곰이", position: "CB" },
@@ -154,16 +154,16 @@ const playerDatabase = [
     { name: "기먕", position: "CB" },
     { name: "투미츠", position: "CB" },
     { name: "두부랑", position: "CB" },
-    { name: "단츄", position: "LB" },
-    { name: "개냥이", position: "LB / CB" },
-    { name: "비밀소녀", position: "LB / CB" },
-    { name: "김챠멜", position: "RB / CM" },
-    { name: "이투", position: "LB" },
-    { name: "이라", position: "LB" },
+    { name: "단츄", position: "FB" },
+    { name: "개냥이", position: "FB / CB" },
+    { name: "비밀소녀", position: "FB / CB" },
+    { name: "김챠멜", position: "FB / CM" },
+    { name: "이투", position: "FB" },
+    { name: "이라", position: "FB" },
     { name: "빅토리", position: "FB" },
     { name: "해우리", position: "FB" },
-    { name: "카푸", position: "RB" },
-    { name: "댕강", position: "RB" },
+    { name: "카푸", position: "FB" },
+    { name: "댕강", position: "FB" },
     { name: "햇비", position: "FB" },
     { name: "박하", position: "FB" },
     { name: "베지", position: "FB" },
@@ -450,7 +450,6 @@ document.getElementById('randomManagerBtn').addEventListener('click', function()
     currentManager = randomManager.getAttribute('data-manager'); // 선택된 감독 설정
 });
 
-// "모든 선수들 보기" 버튼 클릭 이벤트 수정
 document.getElementById('showAllPlayersBtn').addEventListener('click', function() {
     const allPlayersContainer = document.getElementById('allPlayersContainer');
     const positionsContainer = document.getElementById('positionsContainer');
@@ -459,9 +458,9 @@ document.getElementById('showAllPlayersBtn').addEventListener('click', function(
 
     // 모든 선수들 보기 버튼을 클릭하면 기존 생성된 목록 숨기고 새로운 목록 표시
     if (allPlayersContainer.style.display === "none" || allPlayersContainer.style.display === "") {
-        positionsContainer.style.display = "none"; // 기존 목록 숨기기
+        positionsContainer.style.display = "none"; // 기존 포지션별 목록 숨기기
         allPlayersContainer.style.display = "flex"; // 모든 선수들 표시
-        searchContainer.style.display = "block"; // 검색창 표시
+        searchContainer.style.display = "block"; // 검색창과 포지션 필터 버튼 보이기
         showAllPlayersBtn.style.backgroundColor = "#c9302c"; // 버튼 색깔을 빨간색으로 변경
 
         allPlayersContainer.innerHTML = ''; // 기존 목록 초기화
@@ -472,7 +471,7 @@ document.getElementById('showAllPlayersBtn').addEventListener('click', function(
         // 다시 누르면 기존 화면 복원
         positionsContainer.style.display = "grid"; // 기존 3분할 그리드 레이아웃으로 복원
         allPlayersContainer.style.display = "none"; // 모든 선수들 목록 숨기기
-        searchContainer.style.display = "none"; // 검색창 숨기기
+        searchContainer.style.display = "none"; // 검색창과 포지션 필터 버튼 숨기기
         showAllPlayersBtn.style.backgroundColor = ""; // 버튼 색깔을 원래대로 (초기화)
     }
 });
@@ -512,7 +511,7 @@ function createPlayerButton(player, container) {
     container.appendChild(playerButton);
 }
 
-// 검색창에서 입력할 때마다 필터링하는 기능
+// 검색창에서 입력할 때마다 필터링하는 기능 (기존)
 document.getElementById('searchInput').addEventListener('keyup', function() {
     const searchTerm = this.value.toLowerCase();
     const allPlayersContainer = document.getElementById('allPlayersContainer');
@@ -548,4 +547,47 @@ function getPositionColor(position) {
         default:
             return 'black';  // 기본 값
     }
+}
+
+// 포지션 필터 버튼 클릭 이벤트 처리
+document.querySelectorAll('.positionFilterBtn').forEach(button => {
+    button.addEventListener('click', function() {
+        const position = button.getAttribute('data-position');
+        
+        // 모든 포지션 버튼의 활성화 상태를 해제
+        document.querySelectorAll('.positionFilterBtn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // 클릭된 버튼 활성화
+        button.classList.add('active');
+
+        if (position === 'ALL') {
+            // 전체 선수 보기
+            showAllPlayers();
+        } else {
+            // 특정 포지션 선수만 필터링
+            filterPlayersByPosition(position);
+        }
+    });
+});
+
+// 포지션별로 선수 필터링 함수
+function filterPlayersByPosition(position) {
+    const allPlayersContainer = document.getElementById('allPlayersContainer');
+    allPlayersContainer.innerHTML = ''; // 기존 목록 초기화
+
+    // 해당 포지션에 맞는 선수들만 필터링하여 표시
+    playerDatabase.filter(player => player.position.includes(position))
+        .forEach(player => createPlayerButton(player, allPlayersContainer));
+}
+
+
+// 모든 선수 보기 함수
+function showAllPlayers() {
+    const allPlayersContainer = document.getElementById('allPlayersContainer');
+    allPlayersContainer.innerHTML = ''; // 기존 목록 초기화
+
+    // 전체 선수 목록 표시
+    playerDatabase.forEach(player => createPlayerButton(player, allPlayersContainer));
 }

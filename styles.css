@@ -51,12 +51,18 @@ h1, h2 {
     font-family: 'Arial', sans-serif;
 }
 
+/* 검색창을 화면 중앙에 배치 */
 .search-container {
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center; /* 수평 중앙 정렬 */
+    justify-content: center; /* 수직 중앙 정렬 */
+    margin: 0 auto; /* 컨테이너를 수평으로 중앙 정렬 */
+    width: 100%; /* 부모 컨테이너가 화면 전체를 사용하게 설정 */
+    max-width: 600px; /* 검색창이 너무 넓어지지 않도록 제한 */
+    text-align: center; /* 검색창 내부 텍스트 가운데 정렬 */
 }
-
+/* 검색창의 입력 필드 크기 조정 */
 #searchInput {
     padding: 10px;
     width: 100%;
@@ -64,6 +70,7 @@ h1, h2 {
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 16px;
+    margin-bottom: 10px;
 }
 
 /* 감독과 팀 명단 상단 배치 */
@@ -217,7 +224,31 @@ button:hover {
     display: block; /* 기본적으로 보이는 상태 */
 }
 
+.position-filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
 
+.positionFilterBtn {
+    padding: 5px 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* 클릭된 버튼의 색상 */
+.positionFilterBtn.active {
+    background-color: #337ab7; /* 선택된 포지션은 파란색으로 */
+    color: white;
+}
+.positionFilterBtn:hover {
+    background-color: #4cae4c;
+}
 
 /* 포지션 컨테이너 레이아웃 */
 #positionsContainer {
