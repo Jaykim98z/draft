@@ -450,6 +450,7 @@ document.getElementById('randomManagerBtn').addEventListener('click', function()
     currentManager = randomManager.getAttribute('data-manager'); // 선택된 감독 설정
 });
 
+// "모든 선수들 보기" 버튼 클릭 이벤트 수정
 document.getElementById('showAllPlayersBtn').addEventListener('click', function() {
     const allPlayersContainer = document.getElementById('allPlayersContainer');
     const positionsContainer = document.getElementById('positionsContainer');
@@ -475,7 +476,6 @@ document.getElementById('showAllPlayersBtn').addEventListener('click', function(
         showAllPlayersBtn.style.backgroundColor = ""; // 버튼 색깔을 원래대로 (초기화)
     }
 });
-
 // 선수 버튼 생성 함수
 function createPlayerButton(player, container) {
     const playerButton = document.createElement('button');
@@ -493,6 +493,11 @@ function createPlayerButton(player, container) {
 
     playerButton.innerHTML = playerText; // 선수 이름과 포지션을 버튼에 추가
     playerButton.classList.add('playerBtn');
+
+    // 이미 선택된 선수인 경우 색상 표시
+    if (selectedPlayers.has(player.name)) {
+        markPlayerAsSelected(playerButton);
+    }
 
     // 클릭 이벤트 추가: 선수 선택/해제 가능
     playerButton.addEventListener('click', function() {
