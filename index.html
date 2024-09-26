@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>버축대 모의전 드래프트</title>
+    <title>버축대 모의 드래프트</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="title-container">
-            <img src="image/버축대.png" alt="버축대 로고" class="title-image"> <!-- 이미지 추가 -->
-            <h1 class="title-text">모의전 드래프트</h1> <!-- 글자 추가 -->
+            <img src="image/버축대.png" alt="버축대 로고" class="title-image">
+            <h1 class="title-text">모의 드래프트</h1>
         </div>
 
         <span class="made-by">made by 김주황</span>
@@ -20,6 +20,7 @@
         <div class="manager-controls">
             <input type="text" id="managerNameInput" placeholder="감독 이름 입력">
             <button id="addManagerBtn">감독 추가</button>
+            <button id="randomManagerBtn">감독 랜덤선택</button> 
             <button id="resetManagersBtn">감독 및 팀 리셋</button>
         </div>
 
@@ -41,7 +42,14 @@
         <div class="button-group">
             <button id="generateBtn">선수 생성</button>
             <button id="resetPlayersBtn">선수 목록 리셋</button>
+            <button id="showAllPlayersBtn">모든 선수들 보기</button>
         </div>
+
+        <div id="searchContainer" class="search-container" style="display: none;">
+            <input type="text" id="searchInput" placeholder="선수 이름 검색..." />
+        </div>
+        
+        <div id="allPlayersContainer" class="allPlayersContainer" style="display: none;"></div>
 
         <div id="positionsContainer">
             <div class="position">
@@ -80,6 +88,8 @@
                 <div id="GK" class="playerContainer"></div>
             </div>
         </div>
+
+        <div id="allPlayersContainer" class="allPlayersContainer" style="display: none;"></div>
     </div>
 
     <script src="script.js"></script>
