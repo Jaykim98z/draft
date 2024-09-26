@@ -17,7 +17,12 @@ const streamerImages = {
     '피카온': 'image/피카온.jpg',
     '설리반' : 'image/설리반.jpg',
     '우왁굳' : 'image/우왁굳.jpg',
-    '문모모' : 'image/문모모.jpg'
+    '문모모' : 'image/문모모.jpg',
+    '나나문' : 'image/나나문.jpg',
+    '보아탱' : 'image/보아탱.jpg',
+    '디스코' : 'image/디스코.jpg',
+    '한결' : 'image/한결.jpg',
+    '채은채' : 'image/채은채.jpg'
 };
 
 // 선수 생성 버튼 클릭 이벤트
@@ -189,13 +194,35 @@ function deselectPlayer(playerName, playerButton) {
 }
 
 function markPlayerAsSelected(playerButton) {
+    const playerName = playerButton.textContent;
+    
+    // 현재 포지션에서 선택된 선수 표시
     playerButton.style.backgroundColor = '#d9534f';  // 빨간색으로 표시
     playerButton.style.color = 'white';
+
+    // 다른 포지션에서도 동일한 선수 버튼 찾기
+    document.querySelectorAll('.playerBtn').forEach(button => {
+        if (button.textContent === playerName) {
+            button.style.backgroundColor = '#d9534f';  // 다른 포지션에서도 빨간색으로 표시
+            button.style.color = 'white';
+        }
+    });
 }
 
 function unmarkPlayer(playerButton) {
+    const playerName = playerButton.textContent;
+
+    // 현재 포지션에서 선택 취소
     playerButton.style.backgroundColor = '';  // 원래 색상으로 복원
     playerButton.style.color = '';
+
+    // 다른 포지션에서도 동일한 선수 버튼의 선택 취소
+    document.querySelectorAll('.playerBtn').forEach(button => {
+        if (button.textContent === playerName) {
+            button.style.backgroundColor = '';  // 원래 색상으로 복원
+            button.style.color = '';
+        }
+    });
 }
 
 // 감독 및 팀 리셋
