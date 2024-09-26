@@ -2,7 +2,7 @@ let currentManager = null;
 const selectedPlayers = new Set();  // 이미 선택된 선수를 추적하는 Set
 
 // 포지션 순서를 유지하기 위한 배열
-const positionOrder = ['ST', 'WF', 'CM', 'CDM', 'WB', 'CB', 'GK'];
+const positionOrder = ['ST', 'WF', 'CM', 'CDM', 'WB', 'FB', 'CB', 'GK'];
 
 const streamerImages = {
     '천양': 'image/천양.jpg',
@@ -132,7 +132,7 @@ const playerDatabase = [
     { name: "양도끼", position: "CB" },
     { name: "온우쥬", position: "CB" },
     { name: "쪼꼬밍", position: "CB" },
-    { name: "르니", position: "CB / WB" },
+    { name: "르니", position: "CB / FB" },
     { name: "뮤즈", position: "CB" },
     { name: "큐나", position: "CB" },
     { name: "마이곰이", position: "CB" },
@@ -296,6 +296,7 @@ function selectManager(managerButton) {
     currentManager = managerButton.getAttribute('data-manager'); // 감독 ID를 currentManager에 저장
 }
 
+// 감독의 선수 목록에 선수를 추가하는 함수 (포지션 순서대로 정렬)
 function addPlayerToManager(playerName, position) {
     if (!currentManager) {
         alert('먼저 감독을 선택하세요.');
@@ -328,28 +329,46 @@ function addPlayerToManager(playerName, position) {
         return; // 이미 추가된 선수라면 함수 종료
     }
 
-    // 적절한 위치에 선수 추가 (기존 포지션 순서 비교 제거)
-    playerList.appendChild(listItem);
+    // 선수 추가 전에 포지션 순서에 따라 적절한 위치에 추가
+    let inserted = false;
+    for (let i = 0; i < playerList.children.length; i++) {
+        const currentItem = playerList.children[i];
+        const currentPosition = currentItem.innerHTML.match(/([A-Z]{2,3})/g); // 현재 항목의 포지션 추출
+        const currentPosIndex = positionOrder.indexOf(currentPosition[0]); // 현재 항목 포지션의 인덱스
+        const newPosIndex = positionOrder.indexOf(positions[0]); // 새로 추가될 항목의 첫 번째 포지션 인덱스
+
+        // 새 포지션이 현재 항목 포지션보다 앞에 위치할 경우 해당 위치에 삽입
+        if (newPosIndex < currentPosIndex) {
+            playerList.insertBefore(listItem, currentItem);
+            inserted = true;
+            break;
+        }
+    }
+
+    // 삽입되지 않았을 경우 목록 끝에 추가
+    if (!inserted) {
+        playerList.appendChild(listItem);
+    }
 
     selectedPlayers.add(playerName);  // 선택된 선수로 추가
 }
-
-// 포지션에 따른 색상 결정 함수
+// 포지션에 따른 색상 결정 함수 (기존)
 function getPositionColor(position) {
-    switch (position) {
+    switch (position.toUpperCase()) {
         case 'ST':
         case 'WF':
             return 'red';    // ST, WF는 빨강
         case 'CM':
         case 'CDM':
             return 'green';  // CM, CDM은 초록
-        case 'WB':
+        case 'FB':           // FB와 함께 WB도 파란색으로 설정
         case 'CB':
-            return 'blue';   // WB, CB는 파랑
+        case 'WB':
+            return 'blue';   // WB, FB, CB는 파랑
         case 'GK':
-            return 'gray'; // GK는 회색
+            return 'gray';   // GK는 회색
         default:
-            return 'black';  // 기본 값
+            return 'black';  // 기본 값 (기타 포지션)
     }
 }
 
@@ -541,6 +560,7 @@ function getPositionColor(position) {
         case 'CB':
         case 'LB':
         case 'RB':
+        case 'WB':
             return 'blue';   // FB, CB, LB, RB는 파랑
         case 'GK':
             return 'gray';   // GK는 회색
