@@ -1,5 +1,6 @@
 let currentManager = null;
 const selectedPlayers = new Set();  // 이미 선택된 선수를 추적하는 Set
+let previouslySelectedManagers = []; // 이전에 선택된 감독들을 저장할 배열
 
 // 포지션 순서를 유지하기 위한 배열
 const positionOrder = ['ST', 'WF', 'CM', 'CDM', 'WB', 'FB', 'CB', 'GK'];
@@ -456,17 +457,32 @@ document.getElementById('randomManagerBtn').addEventListener('click', function()
         alert('감독이 추가되지 않았습니다.');
         return;
     }
-    
+
+    // 이전에 선택되지 않은 감독들을 찾음
+    const availableManagers = [...managerButtons].filter(button => {
+        const managerName = button.getAttribute('data-manager');
+        return !previouslySelectedManagers.includes(managerName);
+    });
+
+    // 모든 감독이 한 번씩 선택된 경우 배열을 초기화하여 다시 선택 가능하게 함
+    if (availableManagers.length === 0) {
+        previouslySelectedManagers = [];
+        availableManagers.push(...managerButtons); // 모든 감독을 다시 선택 가능하게 함
+    }
+
     // 랜덤으로 감독 선택
-    const randomIndex = Math.floor(Math.random() * managerButtons.length);
-    const randomManager = managerButtons[randomIndex];
+    const randomIndex = Math.floor(Math.random() * availableManagers.length);
+    const randomManager = availableManagers[randomIndex];
 
     // 기존 선택된 감독 초기화
     managerButtons.forEach(button => button.classList.remove('manager-selected'));
-    
+
     // 랜덤으로 선택된 감독을 선택 표시
     randomManager.classList.add('manager-selected');
     currentManager = randomManager.getAttribute('data-manager'); // 선택된 감독 설정
+
+    // 선택된 감독을 previouslySelectedManagers 배열에 추가
+    previouslySelectedManagers.push(currentManager);
 });
 
 document.getElementById('showAllPlayersBtn').addEventListener('click', function() {
