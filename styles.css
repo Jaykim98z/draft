@@ -51,6 +51,16 @@ h1, h2 {
     font-family: 'Arial', sans-serif;
 }
 
+/* Version 텍스트 스타일 (가장 왼쪽 위로 이동) */
+.version {
+    position: absolute;
+    top: 10px;  /* 페이지 맨 위에 배치 */
+    left: 10px; /* 페이지 맨 왼쪽에 배치 */
+    font-size: 10px;
+    color: #000; /* 검은색으로 표시 */
+    font-family: 'Arial', sans-serif;
+}
+
 /* 검색창을 화면 중앙에 배치 */
 .search-container {
     display: flex;
